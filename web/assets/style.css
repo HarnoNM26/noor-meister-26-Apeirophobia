@@ -10,3 +10,7 @@ header, footer {
     border-radius: 15px;
 }
 
+pre {
+    font-family: "Segoe Script MT Bold", cursive;
+    font-size: 16pt;
+}

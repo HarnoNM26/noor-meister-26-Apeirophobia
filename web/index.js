@@ -38,4 +38,14 @@ app.post("/import", async (req, res) => { // vormi esitamisel
     res.redirect("index"); // Suunab üle index päringule
 })
 
+app.get("/external", async (req, res) => {
+
+    res.render("external");
+})
+
+app.get("/externalandmed", async (req, res) => {
+    const response = await fetch("http://localhost:3001/external");
+    const data = await response.json();
+    res.render("externalandmed", {sisu: data});
+})
 app.listen(3002); // Server kuulab porti 3002

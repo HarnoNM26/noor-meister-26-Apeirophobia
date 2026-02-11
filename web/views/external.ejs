@@ -7,16 +7,18 @@
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <header>
-    <h1>Energia andmed | Impordi JSON</h1>
+    <h1>Energia andmed | Välis API andmed</h1>
 </header>
 <body>
     <main>
         <a href="/index">Tagasi avalehele</a>
-        <form method="post">
-            <input type="file" name="fileName" required>
-            <button type="submit">Impordi</button>
+
+        <form>
+            <input type="date" name="start"/>
+            <input type="date" name="end"/>
+            <button type="submit">Sync Prices</button>
         </form>
-        <p style="color: gray; font-size:10px">Ei tööta :C</p>
+        
     </main>
     
 </body>

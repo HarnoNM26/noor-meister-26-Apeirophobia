@@ -2,10 +2,10 @@
 const mysql = require("mysql2"); // andmebaasiga ühenduse loomise jaks
 
 const pool = mysql.createPool({ // loob ühenduse
-    host : 'localhost', 
-    user : 'root',
-    password : '',
-    database : 'iec'
+    host : process.env.HOST, 
+    user : process.env.USER,
+    password : process.env.PASSWORD,
+    database : process.env.DATABASE_NAME
 });
 
 function check() { // kontroll kas andmebaas töötab
