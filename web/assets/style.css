@@ -1,0 +1,12 @@
+body {
+    font-family: "Segoe Script MT Bold", cursive;
+    background-color: greenyellow;
+    
+}
+
+header, footer {
+    background-color: limegreen;
+    padding: 15px;
+    border-radius: 15px;
+}
+
