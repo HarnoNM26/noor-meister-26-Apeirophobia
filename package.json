@@ -9,9 +9,9 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:api": "npm run dev --workspace:api",
-    "dev:web": "npm run dev --workspace:web",
-    "start": "concurrently \"npm run dev:api\" npm run dev:web\""
+    "dev:api": "npm run dev --workspace=api",
+    "dev:web": "npm run dev --workspace=web",
+    "start": "concurrently \"npm run dev:api\" \"npm run dev:web\""
   },
   "repository": {
     "type": "git",

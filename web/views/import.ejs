@@ -7,22 +7,14 @@
     <link rel="stylesheet" href="/assets/style.css">
 </head>
 <header>
-    <h1>Energia andmed - Avaleht</h1>
+    <h1>Impordi</h1>
 </header>
 <body>
     <main>
-        <a href="import">Impordi JSON</a>
-        <ul>
-        <% sisu.forEach(object => { %>
-            <li>
-                <ul>
-                <% for (key in object) { %>
-                    <li><%= object[key] %></li>
-                <% } %>
-                </ul>
-            </li>
-        <% })%>
-        </ul>
+        <form method="post">
+            <input type="file" name="fileName" required>
+            <button type="submit">Impordi</button>
+        </form>
     </main>
     
 </body>

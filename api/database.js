@@ -1,20 +1,21 @@
 
-const {Pool, Client} = require("pg");
+const mysql = require("mysql2"); // andmebaasiga ühenduse loomise jaks
 
-env = require("dotenv");
+const pool = mysql.createPool({ // loob ühenduse
+    host : 'localhost', 
+    user : 'root',
+    password : '',
+    database : 'iec'
+});
 
-const pool = new Pool();
-
-async function check() {
-    let res = await pool.query("SELECT $1::text as message", ["Hello world!"]);
-    console.log(res.rows[0].message);
-
-    pool.end();
-    const client = new Client().connect();
-
-    res = await client.query("SELECT $1::text as message", ["Hello world!"]);
-    console.log(res.rows[0].message);
-    await client.end();
+function check() { // kontroll kas andmebaas töötab
+    pool.query("select * from energyreading"); // saadab andmebaasise päringut
+    return "Database: I am alive"; // tagastab sõnet
 }
 
-check()
+function createEntry() { // ignoreerige seda
+    
+    return;
+}
+
+console.log(check()); // loggib sisse funktsiooni tagastusväärtust
