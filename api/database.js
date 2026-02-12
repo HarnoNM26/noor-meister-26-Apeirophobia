@@ -18,8 +18,8 @@ function check() { // kontroll kas andmebaas töötab
 async function createEntry(time, location, price, source, createdAt) { // ignoreerige seda
 
     try {
-        pool.query(`insert into energyreading (id, timestamp, location, price_eur_mwh, source, created_at)
-            values(null, '${time}', '${location}', ${price}, '${source}', '${createdAt}')`);
+        pool.query(`insert into energyreading (timestamp, location, price_eur_mwh, source, created_at)
+            values('${time}', '${location}', ${price}, '${source}', '${createdAt}')`);
         // console.log("logged a line");
         // pidi sisestama andmebaasisse andmeid, aga ei tööta
     } catch (error) {
