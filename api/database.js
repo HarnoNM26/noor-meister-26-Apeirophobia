@@ -1,6 +1,8 @@
 
 const mysql = require("mysql2"); // andmebaasiga ühenduse loomise jaks
 
+require("dotenv").config();
+
 const pool = mysql.createPool({ // loob ühenduse
     host : process.env.HOST, 
     user : process.env.USER,
@@ -13,9 +15,19 @@ function check() { // kontroll kas andmebaas töötab
     return "Database: I am alive"; // tagastab sõnet
 }
 
-function createEntry() { // ignoreerige seda
-    
-    return;
+async function createEntry(time, location, price, source, createdAt) { // ignoreerige seda
+
+    try {
+        pool.query(`insert into energyreading (id, timestamp, location, price_eur_mwh, source, created_at)
+            values(null, '${time}', '${location}', ${price}, '${source}', '${createdAt}')`);
+        // console.log("logged a line");
+        // pidi sisestama andmebaasisse andmeid, aga ei tööta
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 console.log(check()); // loggib sisse funktsiooni tagastusväärtust
+
+module.exports = {createEntry};

@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
+const fs = require("fs");
 
 app.use(express.urlencoded({extended: false}));
 
 app.use("/assets", express.static("assets"));
+app.use(express.json());
 
 app.set("view engine", "ejs");
 
@@ -20,9 +22,9 @@ app.get("/import", (req, res) => { // import päringu põhjal
 
 app.post("/import", async (req, res) => { // vormi esitamisel 
     console.log(req.body); // logi
-    var data = new FormData() // loon uue FormData
+    /* var data = new FormData() // loon uue FormData
     var payload = { // Defineerin JSON payload'i
-        filename: req.body.fileName // filename on vormis valitud faili nimi
+        "data": fs.readFileSync("../api/energy_dump.json")// filename on vormis valitud faili nimi
     }
     console.log(payload); // logi
     data.append("json", JSON.stringify(payload)); // lisa JSON payload'i data muutujasse
@@ -30,9 +32,13 @@ app.post("/import", async (req, res) => { // vormi esitamisel
     console.log(data); // logi
     const response = fetch("http://localhost:3001/import", {
         method: "post",
+        header: { "Content-Type" : "application/json" },
         body: data
     }); // kutsub post päringut API Serveris. Body ei tööta.
-
+    */
+   const response = fetch("http://localhost:3001/import", {
+        method: "post",
+   })
     
     // res.send(data);
     res.redirect("index"); // Suunab üle index päringule

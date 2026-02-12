@@ -1,14 +1,13 @@
 const express = require("express"); // Import express
 const app = express(); // Launch an app
 const fs = require("fs");
+
+const { createEntry } = require("./database.js");
+
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-app.get('/api/health', (req, res) => {
 
-    res.send("healthCheck"); 
-});
 
-app.get('')
 app.get('/index', async (req, res) => { // kui tehakse get päring
     // const response = await fetch(`${__dirname}/suvakas.json`);
     // const data = response.json();
@@ -20,8 +19,24 @@ app.get('/index', async (req, res) => { // kui tehakse get päring
     res.send(response); // Saada andmed üle
 });
 
-app.post("/import", (req, res) => {
-    console.log("API Server: POST Import", req.body) // logi 
+app.post("/import", async (req, res) => {
+    console.log("API Server: POST Import"); // logi 
+    baseFile = `${__dirname}\\energy_dump.json`;
+    console.log(baseFile);
+    try {
+        const response = fs.readFileSync(baseFile);
+        const data = await JSON.parse(response); 
+        
+        data.forEach(obj => {
+            //console.log(obj.timestamp, obj.location, obj.price_eur_mwh, "API", Date.now());
+            createEntry(obj.timestamp, obj.location, obj.price_eur_mwh, "API", Date.now());
+
+        });
+        
+    } catch (error) {
+        console.error(error);
+    }
+    
     
 });
 
